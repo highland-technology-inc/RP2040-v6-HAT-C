@@ -6,21 +6,32 @@
 
 #ifndef _W6X00_SPI_H_
 #define _W6X00_SPI_H_
-
+#include "definitions.h"
 /**
  * ----------------------------------------------------------------------------------------------------
  * Macros
  * ----------------------------------------------------------------------------------------------------
  */
 /* SPI */
+/// @note This is a safeguard. Pin Definitions should already be set in definitions.h
 #ifndef SPI_PORT //! spi0 is used for the Wiznet chip as well as the EEPROM
+    #ifdef ALICE_CLK
     #define SPI_PORT spi0
-    #define PIN_SCK 18
-    #define PIN_MOSI 19
-    #define PIN_MISO 16
-    #define WIZNET_CS_PIN 17
-    #define PIN_RST 20
+    #define PIN_MISO ALICE_MISO
+    #define WIZNET_CS_PIN ENET_CS_N
+    #define PIN_SCK ALICE_CLK
+    #define PIN_MOSI ALICE_MOSI
+    #define PIN_RST ENET_RST_N
+    #endif
 #endif
+// #ifndef SPI_PORT //! spi0 is used for the Wiznet chip as well as the EEPROM
+//     #define SPI_PORT spi0
+//     #define PIN_SCK 18
+//     #define PIN_MOSI 19
+//     #define PIN_MISO 16
+//     #define WIZNET_CS_PIN 17
+//     #define PIN_RST 20
+// #endif
 
 /* Use SPI DMA */
 //#define USE_SPI_DMA // if you want to use SPI DMA, uncomment.
