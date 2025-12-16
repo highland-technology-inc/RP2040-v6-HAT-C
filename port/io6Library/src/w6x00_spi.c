@@ -40,12 +40,16 @@ static dma_channel_config dma_channel_config_rx;
  */
 static inline void wizchip_select(void)
 {
+    #ifndef X116_TEST
     gpio_put(WIZNET_CS_PIN, 0);
+    #endif
 }
 
 static inline void wizchip_deselect(void)
 {
+    #ifndef X116_TEST
     gpio_put(WIZNET_CS_PIN, 1);
+    #endif
 }
 
 void wizchip_reset()
@@ -162,6 +166,7 @@ void wizchip_spi_initialize(void)
     // make the SPI pins available to picotool
     bi_decl(bi_3pins_with_func(PIN_MISO, PIN_MOSI, PIN_SCK, GPIO_FUNC_SPI));
 
+    #ifndef X116_TEST
     // chip select is active-low, so we'll initialise it to a driven-high state
     gpio_init(WIZNET_CS_PIN);
     gpio_set_dir(WIZNET_CS_PIN, GPIO_OUT);
@@ -169,6 +174,7 @@ void wizchip_spi_initialize(void)
 
     // make the SPI pins available to picotool
     bi_decl(bi_1pin_with_name(WIZNET_CS_PIN, "W6x00 CHIP SELECT"));
+    #endif
 
 #ifdef USE_SPI_DMA
     dma_tx = dma_claim_unused_channel(true);
