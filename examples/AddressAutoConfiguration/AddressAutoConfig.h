@@ -39,7 +39,8 @@
 #include "socket.h"
 #include "dhcpv6.h"
 
-#define AutoConfig_debug debug_on
+// #define AutoConfig_debug debug_on
+#define AutoConfig_debug debug_off
 #define debug_on 1
 #define debug_off 0
 
