@@ -55,6 +55,8 @@ target_include_directories(DHCP4_FILES PUBLIC
         ${WIZNET_DIR}/Ethernet
         ${WIZNET_DIR}/Ethernet/W6100
         ${WIZNET_DIR}/Internet/DHCP4
+        ${CMAKE_SOURCE_DIR}   # for "include/globals.h"
+        ${INCLUDE_DIR}
         )
 
 # DHCP6
