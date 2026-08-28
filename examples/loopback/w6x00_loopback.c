@@ -52,7 +52,7 @@
 #define PORT_TCP_CLIENT6_DEST 5006
 #define PORT_UDP6 5007
 
-#define PORT_TCP_SERVER_DUAL 5008
+#define PORT_TCP_SERVER_DUAL 5007
 
 #define IPV4
 #define IPV6
