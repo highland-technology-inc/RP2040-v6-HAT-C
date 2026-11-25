@@ -155,9 +155,9 @@ static void wizchip_critical_section_unlock(void)
 
 void wizchip_spi_initialize(void)
 {
-    // this example will use SPI0 at 5MHz
-    // spi_init(SPI_PORT, 5000 * 1000); //< 5MHz is too fast for the EEPROM this shares SPI lines with. 
-    spi_init(SPI_PORT, 1000 * 1000); //< SPI0 @ 1MHz
+    /// Start at the EEPROM-safe 1 MHz. Per-device rates (W6100 25 MHz, EEPROM 1 MHz)
+    /// are applied on every chip select by spi_bus_cfg_*() (spi_bus.c).
+    spi_init(SPI_PORT, 1000 * 1000);
 
     gpio_set_function(PIN_SCK, GPIO_FUNC_SPI);
     gpio_set_function(PIN_MOSI, GPIO_FUNC_SPI);
